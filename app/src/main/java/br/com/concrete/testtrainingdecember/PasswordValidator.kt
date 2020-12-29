@@ -1,7 +1,15 @@
 package br.com.concrete.testtrainingdecember
 
 class PasswordValidator {
-    fun isValid(password: String): Boolean {
-        return password.length >= 8
+    private val validations = listOf(
+        "[a-z]",
+        "[A-Z]",
+        "[0-9]",
+        "[\\W]",
+        "[\\w\\W]{8,}"
+    ).map { it.toRegex() }
+
+    fun isValid(password: String) = validations.all { validation ->
+        password.contains(validation)
     }
 }
