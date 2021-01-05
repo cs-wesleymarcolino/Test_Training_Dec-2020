@@ -3,6 +3,7 @@ package br.com.concrete.testtrainingdecember
 import androidx.test.espresso.intent.Intents
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import br.com.concrete.testtrainingdecember.login.LoginActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,36 +23,36 @@ class LoginActivityTest {
 
     @Test
     fun givenEmailIsEmpty_whenLogin_shouldShowEmptyEmailError() {
-        loginAct{
+        loginAct {
             typePassword("aA.123232jkh")
             clickLogin()
         }
-        loginAssert{
+        loginAssert {
             checkMessageWasShown(R.string.error_email_is_empty)
         }
     }
 
     @Test
     fun givenPasswordIsEmpty_whenLogin_shouldShowEmptyPasswordError() {
-        loginAct{
+        loginAct {
             typeEmail("wesley.marcolino@concrete.com.br")
             clickLogin()
         }
 
-        loginAssert{
+        loginAssert {
             checkMessageWasShown(R.string.error_password_is_empty)
         }
     }
 
     @Test
     fun givenInvalidPassword_whenLogin_shouldShowInvalidPasswordError() {
-        loginAct{
+        loginAct {
             typeEmail("wesley.marcolino@concrete.com.br")
             typePassword("a1234")
             clickLogin()
         }
 
-        loginAssert{
+        loginAssert {
             checkMessageWasShown(R.string.error_password_is_invalid)
         }
     }

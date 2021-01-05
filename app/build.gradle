@@ -39,9 +39,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
 
     // local test dependencies
     testImplementation 'junit:junit:4.13.1'
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "io.mockk:mockk:1.10.4"
 
     // instrumented tests dependencies
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.3.0'

@@ -1,4 +1,4 @@
-package br.com.concrete.testtrainingdecember
+package br.com.concrete.testtrainingdecember.utils
 
 class PasswordValidator {
     private val validations = listOf(

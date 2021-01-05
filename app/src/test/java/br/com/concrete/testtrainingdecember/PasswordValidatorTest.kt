@@ -1,5 +1,6 @@
 package br.com.concrete.testtrainingdecember
 
+import br.com.concrete.testtrainingdecember.utils.PasswordValidator
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test

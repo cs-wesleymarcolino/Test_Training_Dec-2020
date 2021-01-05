@@ -10,6 +10,7 @@ import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intending
 import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.ViewMatchers
+import br.com.concrete.testtrainingdecember.home.HomeActivity
 
 class loginArrange(action: loginArrange.() -> Unit) {
     init {
