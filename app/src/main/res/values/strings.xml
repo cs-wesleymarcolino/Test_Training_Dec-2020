@@ -4,4 +4,7 @@
     <string name="email_hint">Email</string>
     <string name="login">Login</string>
     <string name="error_email_is_empty">Email is empty</string>
+    <string name="error_password_is_empty">Password is empty</string>
+    <string name="error_password_is_invalid">Invalid password</string>
+    <string name="home_screen">Homescreen</string>
 </resources>

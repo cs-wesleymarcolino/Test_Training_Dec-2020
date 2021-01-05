@@ -1,10 +1,6 @@
 package br.com.concrete.testtrainingdecember
 
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.typeText
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.intent.Intents
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
@@ -18,25 +14,66 @@ class LoginActivityTest {
 
     @Test
     fun givenInitialState_shouldHaveEmptyEmailAndPassword() {
-        onView(withId(R.id.email))
-            .check(matches(withText("")))
-
-        onView(withId(R.id.password))
-            .check(matches(withText("")))
+        loginAssert {
+            checkEmailFieldIsEmpty()
+            checkPasswordFieldIsEmpty()
+        }
     }
 
     @Test
     fun givenEmailIsEmpty_whenLogin_shouldShowEmptyEmailError() {
-        // arrange
+        loginAct{
+            typePassword("aA.123232jkh")
+            clickLogin()
+        }
+        loginAssert{
+            checkMessageWasShown(R.string.error_email_is_empty)
+        }
+    }
 
-        // act
-        onView(withId(R.id.password))
-            .perform(typeText("aA.123232jkh"))
-        onView(withId(R.id.login))
-            .perform(click())
+    @Test
+    fun givenPasswordIsEmpty_whenLogin_shouldShowEmptyPasswordError() {
+        loginAct{
+            typeEmail("wesley.marcolino@concrete.com.br")
+            clickLogin()
+        }
 
-        // assert
-        onView(withText(R.string.error_email_is_empty))
-            .check(matches(isDisplayed()))
+        loginAssert{
+            checkMessageWasShown(R.string.error_password_is_empty)
+        }
+    }
+
+    @Test
+    fun givenInvalidPassword_whenLogin_shouldShowInvalidPasswordError() {
+        loginAct{
+            typeEmail("wesley.marcolino@concrete.com.br")
+            typePassword("a1234")
+            clickLogin()
+        }
+
+        loginAssert{
+            checkMessageWasShown(R.string.error_password_is_invalid)
+        }
+    }
+
+    @Test
+    fun givenValidEmailAndPassword_whenLogin_shouldGoToHomescreen() {
+        Intents.init()
+
+        loginArrange {
+            mockHomeActivityIntent()
+        }
+
+        loginAct {
+            typeEmail("wesley.marcolino@concrete.com.br")
+            typePassword("aA15$.1234")
+            clickLogin()
+        }
+
+        loginAssert {
+            checkHomescreenActivityWasCalled()
+        }
+
+        Intents.release()
     }
 }
